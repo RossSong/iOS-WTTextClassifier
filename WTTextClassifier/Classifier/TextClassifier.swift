@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TextClassifier {
+public class TextClassifier {
     var model: SVMModel?
     var arrayClass: Array<String>?
     var arrayTotalGram = Array<String>()
