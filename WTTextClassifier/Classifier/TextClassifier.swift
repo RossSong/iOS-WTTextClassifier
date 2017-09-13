@@ -14,7 +14,7 @@ public class TextClassifier {
     var arrayTotalGram = Array<String>()
     var arrayIDF: Array<Int>?
     
-    init() {
+    public init() {
         //  Create an SVM classifier and train
         model = SVMModel(problemType: .C_SVM_Classification, kernelSettings:
             KernelParameters(type: .RadialBasisFunction, degree: 0, gamma: 0.5, coef0: 0.0))
@@ -154,7 +154,7 @@ public class TextClassifier {
         }
     }
     
-    func train(_ dict: Dictionary<String,String>) {
+    public func train(_ dict: Dictionary<String,String>) {
         buildClassAndNGram(dict)
         buildIDF(dict)
         
@@ -189,7 +189,7 @@ public class TextClassifier {
         return ret
     }
     
-    func predict(_ text: String) -> String {
+    public func predict(_ text: String) -> String {
         //  Create a test dataset
         let testData = DataSet(dataType: .Classification, inputDimension: arrayTotalGram.count, outputDimension: 1)
         do {
@@ -216,7 +216,7 @@ public class TextClassifier {
         return ""
     }
     
-    func predictProb(_ text:String) -> Double {
+    public func predictProb(_ text:String) -> Double {
         let arrayProb = getArrayProb(text)
         if let ret = model?.predictProbability(inputs: arrayProb) {
             return ret
